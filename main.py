@@ -11,6 +11,7 @@ from mw import *
 from mainWindow import *
 from psycopg2 import sql
 import psycopg2
+from PyQt5.QtWidgets import QTableWidgetItem
         
 class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
@@ -27,18 +28,23 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                         password=self.line_pwd.text(), host=self.line_host.text())
         self.line_user.setText("CONNECTED")
         self.line_pwd.setText("")
-        
+    
+    def get_rc(self, cf):
+            if len(cf): return len(cf[0])
+            else: return 0
+
     @QtCore.pyqtSlot()
     def on_render_click(self):
         with self.conn.cursor() as cursor:
             cursor.execute("SELECT * FROM TEST;")
-            self.tableWidget.setRowCount(5)
-            self.tableWidget.setColumnCount(1)
-            for row in cursor:
-                for i in row:
+            cf = cursor.fetchall()
+            self.tableWidget.setColumnCount(self.get_rc(cf))
+            self.tableWidget.setRowCount(len(cf))
+            for i in range(len(cf)):
+                for j in range(len(cf[0])):
                     print(i)
-                print(row)
-
+                    self.tableWidget.setItem(i, j, QTableWidgetItem(str(cf[i][j])))
+            
 if __name__ == "__main__":
     import sys
     app = QtWidgets.QApplication(sys.argv)
