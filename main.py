@@ -23,7 +23,7 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     @QtCore.pyqtSlot()
     def on_connect_click(self):
         textboxValue = "1111"
-        QMessageBox.question(self, 'Message', "You typed: " + textboxValue, QMessageBox.Ok, QMessageBox.Ok)
+        # QMessageBox.question(self, 'Message', "You typed: " + textboxValue, QMessageBox.Ok, QMessageBox.Ok)
         self.conn = psycopg2.connect(dbname=self.line_db.text(), user=self.line_user.text(), 
                         password=self.line_pwd.text(), host=self.line_host.text())
         self.line_user.setText("CONNECTED")
@@ -36,7 +36,8 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
     @QtCore.pyqtSlot()
     def on_render_click(self):
         with self.conn.cursor() as cursor:
-            cursor.execute("SELECT * FROM TEST;")
+            self.next_table = "TEST"
+            cursor.execute(f"SELECT * FROM {self.next_table};")
             cf = cursor.fetchall()
             self.tableWidget.setColumnCount(self.get_rc(cf))
             self.tableWidget.setRowCount(len(cf))
