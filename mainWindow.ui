@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>600</height>
+    <width>703</width>
+    <height>602</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -23,7 +23,7 @@
       <height>151</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout">
+    <layout class="QVBoxLayout" name="login_form">
      <item>
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
@@ -110,18 +110,35 @@
      <rect>
       <x>220</x>
       <y>10</y>
-      <width>321</width>
-      <height>301</height>
+      <width>471</width>
+      <height>411</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
+    <layout class="QVBoxLayout" name="query_form">
      <item>
       <widget class="QTableWidget" name="tableWidget"/>
      </item>
      <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_5">
+       <item>
+        <widget class="QComboBox" name="comboBox_tables"/>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QPushButton" name="button_tables">
+       <property name="text">
+        <string>показать таблицу</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QComboBox" name="comboBox"/>
+     </item>
+     <item>
       <widget class="QPushButton" name="render_button">
        <property name="text">
-        <string>render</string>
+        <string>показать запрос</string>
        </property>
       </widget>
      </item>
@@ -133,7 +150,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>703</width>
      <height>21</height>
     </rect>
    </property>
