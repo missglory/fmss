@@ -42,8 +42,10 @@ class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
                 for i in range(len(lines)):
                     l = lines[i]
                     l_no_space = l.replace(" ", "")
-                    if l_no_space == "Inputs:":
+                    if l_no_space == "Inputs:" or l_no_space == "Input:":
                         inputs_next = True
+                    if l_no_space == "Outputs:" or l_no_space == "Output:":
+                        inputs_next = False
                     if inputs_next:
                         try:
                             to_append = l.split(":")[1]
